@@ -20,13 +20,17 @@ public class HttpHandler {
     }
 
     public void handle() {
-        // Get input, output
-        // Build HttpResponse
-        // Send it
         try {
+            HttpRequest request = new HttpRequest(this.inputStream);
+            String path = request.path;
 
-            String responseString = "HTTP/1.1 200 OK\r\n\r\n";
-            byte[] responseBytes = responseString.getBytes(StandardCharsets.UTF_8);
+            HttpResponse response;
+            if (path.equals("/")) {
+                response = new HttpResponse(HttpStatus.OK);
+            } else {
+                response = new HttpResponse(HttpStatus.NOT_FOUND);
+            }
+            byte[] responseBytes = response.toBytes();
 
             this.outputStream.write(responseBytes);
             this.outputStream.flush();
