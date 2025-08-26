@@ -9,8 +9,10 @@ public class Router {
 
 
     public HttpResponse route(HttpRequest req) {
+        System.out.println("Routing request to " + req.getEndpointName());
         for (var entry : routes.entrySet()) {
             if (req.getEndpointName().equals(entry.getKey())) {
+                System.out.println("Trying route " + entry.getKey());
                 return entry.getValue().handle(req);
             }
         }
