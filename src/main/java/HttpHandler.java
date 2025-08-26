@@ -22,7 +22,7 @@ public class HttpHandler {
     public void handle() {
         try {
             HttpRequest request = new HttpRequest(this.inputStream);
-            String path = request.path;
+            String path = request.getPath();
 
             HttpResponse response;
             if (path.equals("/")) {

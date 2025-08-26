@@ -4,9 +4,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class HttpRequest {
-    public final String method;
-    public final String path;  
-    public final String httpVersion;
+    private final String method;
+    private final String path;  
+    private final String httpVersion;
 
     public HttpRequest(InputStream inputStream) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -27,5 +27,17 @@ public class HttpRequest {
         while ((line = reader.readLine()) != null && !line.isEmpty()) {
             // You could store headers in a map here later
         }
+    }
+
+    public String getPath() {
+        return path;
+    }   
+
+    public String getMethod() {
+        return method;
+    }
+    
+    public String getHttpVersion() {
+        return httpVersion; 
     }
 }
