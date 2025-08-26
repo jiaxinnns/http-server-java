@@ -26,9 +26,9 @@ public class HttpHandler {
 
             HttpResponse response;
             if (path.equals("/")) {
-                response = new HttpResponse(HttpStatus.OK);
+                response = new HttpResponse(HttpStatus.OK, null);
             } else {
-                response = new HttpResponse(HttpStatus.NOT_FOUND);
+                response = new HttpResponse(HttpStatus.NOT_FOUND, null);
             }
             byte[] responseBytes = response.toBytes();
 

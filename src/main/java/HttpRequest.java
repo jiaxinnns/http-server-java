@@ -31,12 +31,18 @@ public class HttpRequest {
 
     public String getPath() {
         return path;
-    }   
+    } 
+    
+    public String getEndpointName() {
+        String[] parts = path.split("/", 3);
+        String rawName = parts.length > 1 ? parts[1] : "";
+        return "/" + rawName;
+    }
 
     public String getMethod() {
         return method;
     }
-    
+
     public String getHttpVersion() {
         return httpVersion; 
     }
