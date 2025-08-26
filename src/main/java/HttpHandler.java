@@ -8,6 +8,7 @@ public class HttpHandler {
     private Socket socket;
     private InputStream inputStream;
     private OutputStream outputStream;
+    private final Router router = new Router();
 
     public HttpHandler(Socket socket) { 
         this.socket = socket;
@@ -23,7 +24,7 @@ public class HttpHandler {
         try {
             HttpRequest request = new HttpRequest(this.inputStream);
 
-            HttpResponse response = new Router().route(request);
+            HttpResponse response = this.router.route(request);
             byte[] responseBytes = response.toBytes();
 
             this.outputStream.write(responseBytes);
