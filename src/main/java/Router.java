@@ -10,7 +10,7 @@ public class Router {
 
     public HttpResponse route(HttpRequest req) {
         for (var entry : routes.entrySet()) {
-            if (req.getPath().equals(entry.getKey())) {
+            if (req.getEndpointName().equals(entry.getKey())) {
                 return entry.getValue().handle(req);
             }
         }
