@@ -22,14 +22,8 @@ public class HttpHandler {
     public void handle() {
         try {
             HttpRequest request = new HttpRequest(this.inputStream);
-            String path = request.getPath();
 
-            HttpResponse response;
-            if (path.equals("/")) {
-                response = new HttpResponse(HttpStatus.OK, null);
-            } else {
-                response = new HttpResponse(HttpStatus.NOT_FOUND, null);
-            }
+            HttpResponse response = new Router().route(request);
             byte[] responseBytes = response.toBytes();
 
             this.outputStream.write(responseBytes);
