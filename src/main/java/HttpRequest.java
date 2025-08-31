@@ -30,6 +30,8 @@ public class HttpRequest {
         while ((line = reader.readLine()) != null && !line.isEmpty()) {
             headers.put(line.split(": ")[0], line.split(": ")[1]);
         }
+
+        System.out.println("Parsed headers: " + headers.toString());
     }
 
     public String getPath() {
