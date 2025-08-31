@@ -2,6 +2,7 @@ package endpoints;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import http.HttpContentType;
 import http.HttpRequest;
 import http.HttpResponse;
 import http.HttpStatus;
@@ -21,6 +22,6 @@ public class Router {
                 return entry.getValue().handle(req);
             }
         }
-        return new HttpResponse(HttpStatus.NOT_FOUND, "text/plain", null);
+        return new HttpResponse(HttpStatus.NOT_FOUND, HttpContentType.TEXT_PLAIN, null);
     }
 }

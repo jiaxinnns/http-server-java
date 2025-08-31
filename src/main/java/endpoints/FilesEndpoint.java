@@ -2,6 +2,7 @@ package endpoints;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import http.HttpContentType;
 import http.HttpRequest;
 import http.HttpResponse;
 import http.HttpStatus;
@@ -20,7 +21,7 @@ public class FilesEndpoint implements Endpoint {
     }
 
     @Override
-    public String getContentType() {
-        return "application/octet-stream";
+    public HttpContentType getContentType() {
+        return HttpContentType.OCTET_STREAM;
     }
 }

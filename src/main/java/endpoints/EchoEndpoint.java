@@ -1,5 +1,6 @@
 package endpoints;
 
+import http.HttpContentType;
 import http.HttpRequest;
 import http.HttpResponse;
 import http.HttpStatus;
@@ -12,7 +13,7 @@ public class EchoEndpoint implements Endpoint {
     }
     
     @Override
-    public String getContentType() {
-        return "text/plain";
+    public HttpContentType getContentType() {
+        return HttpContentType.TEXT_PLAIN;
     }
 }
