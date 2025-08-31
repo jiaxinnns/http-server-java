@@ -2,9 +2,9 @@ package endpoints;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import HttpRequest;
-import HttpResponse;
-import HttpStatus;
+import http.HttpRequest;
+import http.HttpResponse;
+import http.HttpStatus;
 
 public class Router {
     private final Map<String, Endpoint> routes = new LinkedHashMap<>() {{

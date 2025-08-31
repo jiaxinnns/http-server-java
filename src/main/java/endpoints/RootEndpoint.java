@@ -1,3 +1,8 @@
+package endpoints;
+import http.HttpRequest;
+import http.HttpResponse;
+import http.HttpStatus;
+
 public class RootEndpoint implements Endpoint {
     @Override
     public HttpResponse handle(HttpRequest request) {

@@ -1,3 +1,8 @@
+package endpoints;
+import http.HttpRequest;
+import http.HttpResponse;
+import http.HttpStatus;
+
 class UserAgentEndpoint implements Endpoint {
     @Override
     public HttpResponse handle(HttpRequest req) {

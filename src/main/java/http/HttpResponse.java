@@ -1,3 +1,4 @@
+package http;
 import java.nio.charset.StandardCharsets;
 
 public class HttpResponse {
