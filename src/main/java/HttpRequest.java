@@ -2,11 +2,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HttpRequest {
     private final String method;
     private final String path;  
     private final String httpVersion;
+    private Map<String, String> headers = new HashMap<>();
 
     public HttpRequest(InputStream inputStream) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -22,10 +25,10 @@ public class HttpRequest {
         this.path = parts[1];    // e.g. "/hello"
         this.httpVersion = parts[2]; // e.g. "HTTP/1.1"
 
-        // TODO: consume headers
+        // Consume headers
         String line;
         while ((line = reader.readLine()) != null && !line.isEmpty()) {
-            // You could store headers in a map here later
+            headers.put(line.split(": ")[0], line.split(": ")[1]);
         }
     }
 
@@ -45,5 +48,15 @@ public class HttpRequest {
 
     public String getHttpVersion() {
         return httpVersion; 
+    }
+
+    public String getUserAgent() {
+        for (var entry : headers.entrySet()) {
+            if (entry.getKey().equals("User-Agent")) {
+                return entry.getValue();
+            }
+        }
+
+        return null;
     }
 }

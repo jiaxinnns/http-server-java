@@ -3,6 +3,7 @@ import java.util.Map;
 
 public class Router {
     private final Map<String, Endpoint> routes = new LinkedHashMap<>() {{
+        put("/user", new UserAgentEndpoint());
         put("/echo", new EchoEndpoint());
         put("/", new RootEndpoint());
     }};
