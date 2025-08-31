@@ -15,8 +15,6 @@ public class Router {
                 return entry.getValue().handle(req);
             }
         }
-
-        System.out.println("No route found for " + req.getEndpointName());
         return new HttpResponse(HttpStatus.NOT_FOUND, null);
     }
 }
