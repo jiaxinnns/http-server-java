@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Router {
     private final Map<String, Endpoint> routes = new LinkedHashMap<>() {{
-        put("/user", new UserAgentEndpoint());
+        put("/user-agent", new UserAgentEndpoint());
         put("/echo", new EchoEndpoint());
         put("/", new RootEndpoint());
     }};
@@ -15,6 +15,8 @@ public class Router {
                 return entry.getValue().handle(req);
             }
         }
+
+        System.out.println("No route found for " + req.getEndpointName());
         return new HttpResponse(HttpStatus.NOT_FOUND, null);
     }
 }
