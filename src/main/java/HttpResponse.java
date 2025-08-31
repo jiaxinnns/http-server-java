@@ -2,10 +2,12 @@ import java.nio.charset.StandardCharsets;
 
 public class HttpResponse {
     private final HttpStatus status;
+    private String contentType;
     private String body;
 
-    public HttpResponse(HttpStatus status, String body) {
+    public HttpResponse(HttpStatus status, String contentType, String body) {
         this.status = status;
+        this.contentType = contentType;
         this.body = body;
     }
 
@@ -20,7 +22,8 @@ public class HttpResponse {
                 .append("\r\n");
 
         // Headers
-        response.append("Content-Type: text/plain\r\n");
+        response.append("Content-Type: ");
+        response.append(this.contentType).append("\r\n");
         response.append("Content-Length: ")
                 .append(String.valueOf(this.body != null ? this.body.getBytes(StandardCharsets.UTF_8).length : 0))
                 .append("\r\n");

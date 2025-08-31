@@ -3,6 +3,7 @@ import java.util.Map;
 
 public class Router {
     private final Map<String, Endpoint> routes = new LinkedHashMap<>() {{
+        put("/files", new FilesEndpoint());
         put("/user-agent", new UserAgentEndpoint());
         put("/echo", new EchoEndpoint());
         put("/", new RootEndpoint());
@@ -15,6 +16,6 @@ public class Router {
                 return entry.getValue().handle(req);
             }
         }
-        return new HttpResponse(HttpStatus.NOT_FOUND, null);
+        return new HttpResponse(HttpStatus.NOT_FOUND, "text/plain", null);
     }
 }

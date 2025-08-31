@@ -1,10 +1,12 @@
 public class EchoEndpoint implements Endpoint {
     @Override
     public HttpResponse handle(HttpRequest request) {
-        String path = request.getPath();
-        String[] parts = path.split("/", 3);
-        String body = parts.length > 2 ? parts[2] : null;
-        return new HttpResponse(HttpStatus.OK, body);
+        String body = request.getEndpointContents();
+        return new HttpResponse(HttpStatus.OK, this.getContentType(),body);
     }
     
+    @Override
+    public String getContentType() {
+        return "text/plain";
+    }
 }

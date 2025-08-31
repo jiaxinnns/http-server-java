@@ -3,8 +3,13 @@ class UserAgentEndpoint implements Endpoint {
     public HttpResponse handle(HttpRequest req) {
         String userAgent = req.getUserAgent();
         if (userAgent == null) {
-            return new HttpResponse(HttpStatus.OK, "User-Agent header not found");
+            return new HttpResponse(HttpStatus.NOT_FOUND, this.getContentType(), null);
         } 
-        return new HttpResponse(HttpStatus.OK, userAgent);
+        return new HttpResponse(HttpStatus.OK, this.getContentType(),userAgent);
+    }
+
+    @Override
+    public String getContentType() {
+        return "text/plain";        
     }
 }

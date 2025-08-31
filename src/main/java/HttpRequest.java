@@ -42,6 +42,11 @@ public class HttpRequest {
         return "/" + rawName;
     }
 
+    public String getEndpointContents() {
+        String[] parts = path.split("/", 3);
+        return parts.length > 2 ? parts[2] : null;
+    }
+
     public String getMethod() {
         return method;
     }
