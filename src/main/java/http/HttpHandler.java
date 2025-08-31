@@ -1,8 +1,10 @@
+package http;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.nio.charset.StandardCharsets;
+
+import endpoints.Router;
 
 public class HttpHandler {
     private Socket socket;
