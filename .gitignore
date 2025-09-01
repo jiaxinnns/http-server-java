@@ -1,6 +1,3 @@
 *.jar
 target/
-.idea/
-.codecrafters/
 .vscode/
-codecrafters.yml
