@@ -4,6 +4,7 @@ This is a simple HTTP server written in Java TCP primitives that supports the fo
 
 - `/echo/{str}`: Returns the string `{str}` in the response body.
 - `/files/{filename}`: Serves files from a specified directory and supports file creation via POST requests.
+- `/user-agent`: Reads the `User-Agent` header and returns it in the response body.
 
 ## Running the Server
 
@@ -19,7 +20,7 @@ This will start the server listening on port 4221 and use `{your-current-working
 
 Ensure the server has been started as per the instructions above.
 
-1. Echo Endpoint
+# 1. Echo Endpoint
 
 Test the /echo/{str} endpoint using curl:
 
@@ -37,7 +38,7 @@ Content-Length: 3\r\n
 abc
 ```
 
-2. Serve Existing Files
+# 2. Serve Existing Files
 
 Create a file in the directory and test retrieving it:
 
@@ -70,7 +71,7 @@ HTTP/1.1 404 Not Found\r\n
 \r\n
 ```
 
-3. Create New Files
+# 3. Create New Files
 
 Send a POST request to create a new file:
 
@@ -90,3 +91,21 @@ Behaviour:
 - The server will create a new file in the specified directory (e.g., ./hello), with the specified file name (e.g., file_123).
 - If no directory was specified, the file is created in your current working directory.
 - The file will contain the contents of the request body (e.g., 12345).
+
+# 4. User Agent
+
+Send a GET request with a User-Agent header:
+
+```bash
+curl -v --header "User-Agent: foobar/1.2.3" http://localhost:4221/user-agent
+```
+
+Expected Response:
+
+```
+HTTP/1.1 200 OK\r\n
+Content-Type: text/plain\r\n
+Content-Length: 12\r\n
+\r\n
+foobar/1.2.3
+```
