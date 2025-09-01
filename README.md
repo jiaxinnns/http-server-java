@@ -20,7 +20,7 @@ This will start the server listening on port 4221 and use `{your-current-working
 
 Ensure the server has been started as per the instructions above.
 
-# 1. Echo Endpoint
+### 1. Echo Endpoint
 
 Test the /echo/{str} endpoint using curl:
 
@@ -38,7 +38,7 @@ Content-Length: 3\r\n
 abc
 ```
 
-# 2. Serve Existing Files
+### 2. Serve Existing Files
 
 Create a file in the directory and test retrieving it:
 
@@ -71,7 +71,7 @@ HTTP/1.1 404 Not Found\r\n
 \r\n
 ```
 
-# 3. Create New Files
+### 3. Create New Files
 
 Send a POST request to create a new file:
 
@@ -92,7 +92,7 @@ Behaviour:
 - If no directory was specified, the file is created in your current working directory.
 - The file will contain the contents of the request body (e.g., 12345).
 
-# 4. User Agent
+### 4. User Agent
 
 Send a GET request with a User-Agent header:
 
