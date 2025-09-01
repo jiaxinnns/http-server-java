@@ -2,7 +2,8 @@ package http;
 public enum HttpStatus {
     OK(200, "OK"),
     CREATED(201, "Created"),
-    NOT_FOUND(404, "Not Found");
+    NOT_FOUND(404, "Not Found"),
+    INTERNAL_SERVER_ERROR(500, "Internal Server Error");
 
     private final int code;
     private final String reason;

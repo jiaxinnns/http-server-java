@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.codecrafters</groupId>
-    <artifactId>codecrafters-http-server</artifactId>
-    <version>1.0</version>
+    <artifactId>http-server-java</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
@@ -17,25 +17,23 @@
 
     <build>
         <plugins>
+            <!-- Create a fat JAR with dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
                 <configuration>
-                    <finalName>codecrafters-http-server</finalName> <!-- Please do not change this final artifact name-->
+                    <finalName>http-server-java</finalName>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
-                            <!-- This is the main class of your program which will be executed-->
                             <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
-                    <outputDirectory>${dir}</outputDirectory>
                 </configuration>
-
                 <executions>
                     <execution>
                         <id>make-assembly</id>
@@ -48,5 +46,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
