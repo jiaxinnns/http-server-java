@@ -41,8 +41,6 @@ public class HttpRequest {
             reader.read(bodyChars, 0, length);
             this.body = new String(bodyChars, 0, bodyChars.length);
         }
-        
-        System.out.println("request body: " + this.body);
     }
 
     public String getPath() {
@@ -56,6 +54,7 @@ public class HttpRequest {
     }
 
     public String getEndpointContents() {
+        // Returns the part after the endpoint name
         String[] parts = path.split("/", 3);
         return parts.length > 2 ? parts[2] : null;
     }

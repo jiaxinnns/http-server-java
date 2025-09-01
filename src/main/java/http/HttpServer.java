@@ -22,7 +22,7 @@ public class HttpServer {
         try {
             while (true) {
                 Socket clientSocket = serverSocket.accept();
-                HttpHandler handler = new HttpHandler(clientSocket);
+                HttpClientHandler handler = new HttpClientHandler(clientSocket);
                 executor.submit(handler::handle);
             }
         } catch (IOException e) {

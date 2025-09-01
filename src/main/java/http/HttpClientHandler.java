@@ -6,13 +6,13 @@ import java.net.Socket;
 
 import endpoints.Router;
 
-public class HttpHandler {
+public class HttpClientHandler {
     private Socket socket;
     private InputStream inputStream;
     private OutputStream outputStream;
     private final Router router = new Router();
 
-    public HttpHandler(Socket socket) { 
+    public HttpClientHandler(Socket socket) { 
         this.socket = socket;
         try {
             this.inputStream = socket.getInputStream();
