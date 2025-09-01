@@ -109,3 +109,48 @@ Content-Length: 12\r\n
 \r\n
 foobar/1.2.3
 ```
+
+## File Structure & Key Classes
+
+The project is organized as follows:
+
+```
+http-server-java/
+├── http_server.sh           # Shell script to run the server
+├── pom.xml                  # Maven build file
+├── src/
+│   └── main/
+│       └── java/
+│           ├── Main.java                # Entry point, parses args and starts server
+│           ├── endpoints/               # HTTP endpoint handlers
+│           │   ├── EchoEndpoint.java    # Handles /echo/{str} requests
+│           │   ├── FilesEndpoint.java   # Handles /files/{filename} GET/POST requests
+│           │   ├── UserAgentEndpoint.java # Handles /user-agent requests
+│           │   ├── RootEndpoint.java    # Handles root ("/") requests
+│           │   ├── Endpoint.java        # Endpoint interface
+│           │   └── Router.java          # Routes requests to correct endpoint
+│           ├── http/                    # Core HTTP server logic
+│           │   ├── HttpServer.java      # Listens for connections, manages threads
+│           │   ├── HttpClientHandler.java # Handles individual client requests
+│           │   ├── HttpRequest.java     # Parses HTTP requests
+│           │   ├── HttpResponse.java    # Builds HTTP responses
+│           │   ├── HttpContentType.java # Content-Type helpers
+│           │   └── HttpStatus.java      # HTTP status codes
+│           └── utils/
+│               └── Config.java          # Stores global config (e.g., base directory)
+```
+
+### Main Classes & Their Roles
+
+- **Main.java**: Parses command-line arguments and starts the HTTP server.
+- **HttpServer.java**: Listens for incoming TCP connections and delegates each to a handler thread.
+- **HttpClientHandler.java**: Reads/parses requests, routes them, and writes responses.
+- **Router.java**: Maps request paths to endpoint handlers.
+- **Endpoint.java**: Interface for all endpoint handlers.
+- **EchoEndpoint.java**: Returns the echoed string from the URL.
+- **FilesEndpoint.java**: Serves files and handles file creation.
+- **UserAgentEndpoint.java**: Returns the User-Agent header value.
+- **RootEndpoint.java**: Handles requests to the root path.
+- **HttpRequest.java**: Parses HTTP request data.
+- **HttpResponse.java**: Constructs HTTP response data.
+- **Config.java**: Stores configuration such as the base directory for file operations.
