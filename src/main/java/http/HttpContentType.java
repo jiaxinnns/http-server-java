@@ -2,8 +2,7 @@ package http;
 
 public enum HttpContentType {
     TEXT_PLAIN("text/plain"),
-    OCTET_STREAM("application/octet-stream"),
-    HTML("text/html");
+    OCTET_STREAM("application/octet-stream");
 
     private final String value;
 

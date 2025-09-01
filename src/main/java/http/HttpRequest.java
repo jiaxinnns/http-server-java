@@ -11,6 +11,7 @@ public class HttpRequest {
     private final String path;  
     private final String httpVersion;
     private Map<String, String> headers = new HashMap<>();
+    private String body = null;
 
     public HttpRequest(InputStream inputStream) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -31,6 +32,17 @@ public class HttpRequest {
         while ((line = reader.readLine()) != null && !line.isEmpty()) {
             headers.put(line.split(": ")[0], line.split(": ")[1]);
         }
+
+        // Consume body
+        String contentLength = getContentLength();
+        if (contentLength != null) {
+            int length = Integer.parseInt(contentLength);
+            char[] bodyChars = new char[length];
+            reader.read(bodyChars, 0, length);
+            this.body = new String(bodyChars, 0, bodyChars.length);
+        }
+        
+        System.out.println("request body: " + this.body);
     }
 
     public String getPath() {
@@ -64,5 +76,19 @@ public class HttpRequest {
         }
 
         return null;
+    }
+
+    public String getContentLength() {
+        for (var entry : headers.entrySet()) {
+            if (entry.getKey().equals("Content-Length")) {
+                return entry.getValue();
+            }
+        }
+
+        return null;
+    }
+
+    public String getBody() {
+        return body;
     }
 }
